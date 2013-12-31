@@ -67,6 +67,13 @@ For more details, see the help messages:
 
 
 
+Glossary
+--------
+
+Glossary can be found in <http://goo.gl/gXWaFH>.
+
+
+
 Author
 ------
 
