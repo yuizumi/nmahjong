@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+    <title>NMahjong Gamelog Viewer</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="viewer.css">
+  </head>
+  <body>
+    <div id="game-table"></div>
+    <div id="side-panel">
+      <div>
+        <input onchange="ui.load(this.files[0])" type="file">
+      </div>
+      <div id="controls" style="display:none">
+        <div>
+          <button onclick="ui.step(-10)">&lt;&lt;</button>
+          <button onclick="ui.step(-1)">&lt;</button>
+          <input id="index" readonly size="8">
+          <button onclick="ui.step(+1)">&gt;</button>
+          <button onclick="ui.step(+10)">&gt;&gt;</button>
+        </div>
+        <div>
+          Hand: <select id="jump" onchange="ui.jump(this)"></select>
+        </div>
+        <div>
+          <button onclick="ui.rotate()">Change viewpoint</button>
+        </div>
+        <div>
+          <div>
+            <input id="sort-hand" type="checkbox" onchange="ui.redraw()" checked>
+            <label for="sort-hand" title="Arrange tiles in player hands in a natural order.">
+              Arrange player hands
+            </label>
+          </div>
+          <div>
+            <input id="show-tmgr" type="checkbox" onchange="ui.redraw()">
+            <label for="show-tmgr" title="Indicate tiles discarded right away after the draw.">
+              Indicate tsumogiri
+            </label>
+          </div>
+          <div>
+            <input id="show-clmd" type="checkbox" onchange="ui.redraw()">
+            <label for="show-clmd" title="Show claimed tiles in discards.">
+              Show claimed discards
+            </label>
+          </div>
+        </div>
+      </div>
+      <div id="message"></div>
+    </div>
+
+    <script src="third_party/jquery-2.0.3.min.js"></script>
+    <script src="third_party/underscore-min.js"></script>
+
+    <script id="tmpl_GameTable" type="text/html">
+      <% if (ui.enabled("show-tmgr")) { %>
+        <style scoped>
+          .discards .tile-draw {
+              box-shadow: 0 40px rgba(64, 64, 64, .3) inset;
+          }
+        </style>
+      <% } %>
+      <%= $r("GameInfo", $_) %>
+      <% _.each($_.Players, function (player, index) { %>
+        <%= $r("Player", _.extend(player, {Id: index})) %>
+      <% }); %>
+    </script>
+
+    <script id="tmpl_GameInfo" type="text/html">
+      <div id="game-info">
+        <div>
+          <span id="hand-number">
+            {{nmj.wind($_.PrevailingWind)}} #{{$_.HandNumber}}
+          </span>
+          <span id="wall-count">
+            Wall: {{$_.Wall.Count}}
+          </span>
+        </div>
+        <div id="sticks">
+          <span class="stick"><img alt="100" src="images/100.png"></span>
+              &times;{{$_.Counters}},
+          <span class="stick"><img alt="1000" src="images/1000.png"></span>
+              &times;{{$_.RiichiSticks}}
+        </div>
+        <div>
+          <div>Dora:</div>
+          <div>
+            <% _.each($_.Dora, function (dora) { %><%= $r("Tile", dora.Indicator) %><% }); %>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script id="tmpl_Player" type="text/html">
+      <% var side = ($_.Id - ui.viewpoint() + 4) % 4; %>
+      <div id="p{{$_.Id}}" class="player side-{{side}}">
+        <div class="player-info">
+          [{{$_.Id}}] {{nmj.wind($_.SeatWind)}}: {{$_.Name}} &mdash; {{$_.Score}} pts.
+        </div>
+        <%= $r("Ground", $_) %>
+        <%= $r("Discards", $_) %>
+      </div>
+    </script>
+
+    <script id="tmpl_Ground" type="text/html">
+      <div class="ground">
+        <% if ($_.Tiles) { %>
+          <span class="hand">
+            <% var tiles = ui.enabled("sort-hand") ? manip.hand($_.Tiles) : $_.Tiles; %>
+            <% _.each(tiles, function (tile) { %><%= $r("Tile", tile) %><% }); %>
+          </span>
+        <% } %>
+        <% _.each($_.Melds, function (meld) { %>
+          <span class="meld">
+            <% var tiles = manip.meld(meld, $_.Id); %>
+            <% _.each(tiles, function (tile) { %><%= $r("Tile", tile) %><% }); %>
+          </span>
+        <% }); %>
+      </div>
+    </script>
+
+    <script id="tmpl_Discards" type="text/html">
+      <div class="discards">
+        <% var rows = manip.discards($_.Discards, ui.enabled("show-clmd")); %>
+        <% _.each(rows, function (row) { %>
+          <div>
+            <% _.each(row, function (tile) { %><%= $r("Tile", tile) %><% }); %>
+          </div>
+        <% }); %>
+      </div>
+    </script>
+
+    <script id="tmpl_Tile" type="text/html">
+      <% if (!$_) { %>
+        <span class="tile tile-back"></span>
+      <% } else { %>
+        <%
+           var name = $_.BaseTile + (nmj.has($_, nmj.RED) ? "r" : "");
+           var classes = ["tile"];
+           if (nmj.has($_, nmj.DRAWN)) classes.push("tile-draw");
+           if (nmj.has($_, nmj.CLAIMED)) classes.push("tile-claim");
+           if (nmj.has($_, nmj.EXTENDING)) classes.push("tile-extend");
+           if (nmj.has($_, nmj.RIICHI)) classes.push("tile-riichi");
+        %>
+        <span class="{{classes.join(' ')}}">
+          <img alt="{{name}}" src="images/{{name}}.png"></span>
+      <% } %>
+    </script>
+
+    <script id="tmpl_Error" type="text/html">
+      <div class="error">Error: {{$_}}</div>
+    </script>
+
+    <script id="tmpl_Event" type="text/html">
+      <div>Event: {{$_.event}}</div>
+      <div>Args: {{JSON.stringify($_.args)}}</div>
+    </script>
+
+    <script id="tmpl_Jump" type="text/html">
+      <% _.each($_, function (hand, index) { %>
+        <% var s = hand.state; %>
+        <option value="{{hand.value}}">
+          [{{index}}]
+          {{nmj.wind(s.PrevailingWind)}} #{{s.HandNumber}}, {{s.Counters}} counter(s)
+        </option>
+      <% }); %>
+    </script>
+
+    <script src="viewer.js"></script>
+  </body>
+</html>

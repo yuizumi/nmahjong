@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>NMahjong.Japanese</AssemblyName>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}</ProjectGuid>
+    <RootNamespace>NMahjong.Japanese</RootNamespace>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AnnotatedTile.cs" />
+    <Compile Include="AnnotatedTiles.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CanonicalTile.cs" />
+    <Compile Include="CheckTile.cs" />
+    <Compile Include="ConcealedKong.cs" />
+    <Compile Include="DrawHand.cs" />
+    <Compile Include="Dora.cs" />
+    <Compile Include="DoraHelper.cs" />
+    <Compile Include="ExtendedKong.cs" />
+    <Compile Include="HandState.cs" />
+    <Compile Include="IEventHandlerRegisterer.cs" />
+    <Compile Include="IGameState.cs" />
+    <Compile Include="IIntelligenceFactory.cs" />
+    <Compile Include="IPlayerAction.cs" />
+    <Compile Include="IPlayerHand.cs" />
+    <Compile Include="IPlayerState.cs" />
+    <Compile Include="IRuleAdvisor.cs" />
+    <Compile Include="IWall.cs" />
+    <Compile Include="Intelligence.cs" />
+    <Compile Include="IntelligenceArgs.cs" />
+    <Compile Include="InvalidActionException.cs" />
+    <Compile Include="OpenChow.cs" />
+    <Compile Include="OpenKong.cs" />
+    <Compile Include="OpenPung.cs" />
+    <Compile Include="PlayerStates.cs" />
+    <Compile Include="RevealedMeld.cs" />
+    <Compile Include="RevealedMelds.cs" />
+    <Compile Include="RevealedMeldsHelper.cs" />
+    <Compile Include="TileAnnotations.cs" />
+    <Compile Include="TileAnnotationsExtension.cs" />
+    <Compile Include="WinningInfo.cs" />
+    <Compile Include="WinningInfo.Builder.cs" />
+    <Compile Include="actions\AbortiveDrawAction.cs" />
+    <Compile Include="actions\Actions.cs" />
+    <Compile Include="actions\ChowAction.cs" />
+    <Compile Include="actions\ConcealedKongAction.cs" />
+    <Compile Include="actions\DiscardAction.cs" />
+    <Compile Include="actions\ExtendedKongAction.cs" />
+    <Compile Include="actions\MahjongAction.cs" />
+    <Compile Include="actions\MeldAction.cs" />
+    <Compile Include="actions\NoneAction.cs" />
+    <Compile Include="actions\OpenKongAction.cs" />
+    <Compile Include="actions\PungAction.cs" />
+    <Compile Include="actions\RiichiAction.cs" />
+    <Compile Include="events\DoraAddedEventArgs.cs" />
+    <Compile Include="events\HandDrawnEventArgs.cs" />
+    <Compile Include="events\HandStartingEventArgs.cs" />
+    <Compile Include="events\MeldExtendedEventArgs.cs" />
+    <Compile Include="events\MeldRevealedEventArgs.cs" />
+    <Compile Include="events\PlayerHandUpdatedEventArgs.cs" />
+    <Compile Include="events\RiichiEventArgs.cs" />
+    <Compile Include="events\ScoreUpdatedEventArgs.cs" />
+    <Compile Include="events\SticksUpdatedEventArgs.cs" />
+    <Compile Include="events\TileDiscardedEventArgs.cs" />
+    <Compile Include="events\TileDrawnEventArgs.cs" />
+    <Compile Include="events\WinningDeclaredEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\auxlib\NMahjong.Aux.csproj">
+      <Project>{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}</Project>
+      <Name>NMahjong.Aux</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\base\NMahjong.Base.csproj">
+      <Project>{D55101BF-1592-402D-B13D-BF7ACC2EF244}</Project>
+      <Name>NMahjong.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

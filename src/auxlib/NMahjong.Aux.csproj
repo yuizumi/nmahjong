@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>NMahjong.Aux</AssemblyName>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}</ProjectGuid>
+    <RootNamespace>NMahjong.Aux</RootNamespace>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CheckArg.cs" />
+    <Compile Include="CheckState.cs" />
+    <Compile Include="Collections.cs" />
+    <Compile Include="DisposableContainer.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="FamilyAndAssemblyAttribute.cs" />
+    <Compile Include="ImmutableDictionary.cs" />
+    <Compile Include="ImmutableList.cs" />
+    <Compile Include="MoreEnumerable.cs" />
+    <Compile Include="ReadOnlyCollectionView.cs" />
+    <Compile Include="ReadOnlyDictionaryView.cs" />
+    <Compile Include="ReadOnlyListView.cs" />
+    <Compile Include="VisibleForTestingAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

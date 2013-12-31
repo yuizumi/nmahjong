@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>NMahjong.Base</AssemblyName>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>{D55101BF-1592-402D-B13D-BF7ACC2EF244}</ProjectGuid>
+    <RootNamespace>NMahjong.Base</RootNamespace>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Chow.cs" />
+    <Compile Include="Kong.cs" />
+    <Compile Include="Meld.cs" />
+    <Compile Include="MeldState.cs" />
+    <Compile Include="Melds.cs" />
+    <Compile Include="MeldsHelper.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="PlayerId.cs" />
+    <Compile Include="Pung.cs" />
+    <Compile Include="Quad.cs" />
+    <Compile Include="Suit.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="TileType.cs" />
+    <Compile Include="Tiles.cs" />
+    <Compile Include="Wind.cs" />
+    <Compile Include="Winning.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\auxlib\NMahjong.Aux.csproj">
+      <Project>{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}</Project>
+      <Name>NMahjong.Aux</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

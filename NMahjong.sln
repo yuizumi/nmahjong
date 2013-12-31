@@ -1,0 +1,101 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Aux", "src\auxlib\NMahjong.Aux.csproj", "{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Aux.Tests", "tests\auxlib\NMahjong.Aux.Tests.csproj", "{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Aux.Tools", "src\auxlib\tools\NMahjong.Aux.Tools.csproj", "{389A3C0F-34EB-4015-AB6D-823A5693C59D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Aux.Tools.Tests", "tests\auxlib\tools\NMahjong.Aux.Tools.Tests.csproj", "{D663D3F7-0C85-4283-8B98-429841547958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Base", "src\base\NMahjong.Base.csproj", "{D55101BF-1592-402D-B13D-BF7ACC2EF244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Base.Tests", "tests\base\NMahjong.Base.Tests.csproj", "{B207F03B-7DDA-4B92-96B7-66F021E44ED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Japanese", "src\japanese\NMahjong.Japanese.csproj", "{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Japanese.Tests", "tests\japanese\NMahjong.Japanese.Tests.csproj", "{B30AEFAE-B9F8-4758-8CA9-B693B70E671C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Japanese.Drivers", "src\japanese\drivers\NMahjong.Japanese.Drivers.csproj", "{020D7B32-869D-4F9F-BAB3-6FDFBC8EF9CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Japanese.Drivers.Tests", "tests\japanese\drivers\NMahjong.Japanese.Drivers.Tests.csproj", "{017DDE21-B249-4D43-9D7D-6BECC14D5A98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Japanese.Engine", "src\japanese\engine\NMahjong.Japanese.Engine.csproj", "{14147D28-3FBC-49E2-BD65-8F47EDFDFC6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Japanese.Engine.Tests", "tests\japanese\engine\NMahjong.Japanese.Engine.Tests.csproj", "{CB36F1F5-1C99-49B5-AE75-1E47E4A1054E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Drivers.Mjai", "src\drivers\mjai\NMahjong.Drivers.Mjai.csproj", "{E3697875-5EC3-406D-9904-0DB3F1EA0411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Drivers.Mjai.Tests", "tests\drivers\mjai\NMahjong.Drivers.Mjai.Tests.csproj", "{CCD174B4-A9B4-4A8D-9325-A11D70A12FEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Sample", "src\sample\NMahjong.Sample.csproj", "{C2B9C009-FB6D-434A-99CA-F544D73F4CFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{017DDE21-B249-4D43-9D7D-6BECC14D5A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{017DDE21-B249-4D43-9D7D-6BECC14D5A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{017DDE21-B249-4D43-9D7D-6BECC14D5A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{017DDE21-B249-4D43-9D7D-6BECC14D5A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020D7B32-869D-4F9F-BAB3-6FDFBC8EF9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020D7B32-869D-4F9F-BAB3-6FDFBC8EF9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020D7B32-869D-4F9F-BAB3-6FDFBC8EF9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020D7B32-869D-4F9F-BAB3-6FDFBC8EF9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14147D28-3FBC-49E2-BD65-8F47EDFDFC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14147D28-3FBC-49E2-BD65-8F47EDFDFC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14147D28-3FBC-49E2-BD65-8F47EDFDFC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14147D28-3FBC-49E2-BD65-8F47EDFDFC6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389A3C0F-34EB-4015-AB6D-823A5693C59D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{389A3C0F-34EB-4015-AB6D-823A5693C59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{389A3C0F-34EB-4015-AB6D-823A5693C59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389A3C0F-34EB-4015-AB6D-823A5693C59D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B207F03B-7DDA-4B92-96B7-66F021E44ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B207F03B-7DDA-4B92-96B7-66F021E44ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B207F03B-7DDA-4B92-96B7-66F021E44ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B207F03B-7DDA-4B92-96B7-66F021E44ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B30AEFAE-B9F8-4758-8CA9-B693B70E671C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B30AEFAE-B9F8-4758-8CA9-B693B70E671C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B30AEFAE-B9F8-4758-8CA9-B693B70E671C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B30AEFAE-B9F8-4758-8CA9-B693B70E671C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B9C009-FB6D-434A-99CA-F544D73F4CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B9C009-FB6D-434A-99CA-F544D73F4CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B9C009-FB6D-434A-99CA-F544D73F4CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B9C009-FB6D-434A-99CA-F544D73F4CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB36F1F5-1C99-49B5-AE75-1E47E4A1054E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB36F1F5-1C99-49B5-AE75-1E47E4A1054E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB36F1F5-1C99-49B5-AE75-1E47E4A1054E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB36F1F5-1C99-49B5-AE75-1E47E4A1054E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD174B4-A9B4-4A8D-9325-A11D70A12FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD174B4-A9B4-4A8D-9325-A11D70A12FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD174B4-A9B4-4A8D-9325-A11D70A12FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD174B4-A9B4-4A8D-9325-A11D70A12FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D55101BF-1592-402D-B13D-BF7ACC2EF244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55101BF-1592-402D-B13D-BF7ACC2EF244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55101BF-1592-402D-B13D-BF7ACC2EF244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55101BF-1592-402D-B13D-BF7ACC2EF244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D663D3F7-0C85-4283-8B98-429841547958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D663D3F7-0C85-4283-8B98-429841547958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D663D3F7-0C85-4283-8B98-429841547958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D663D3F7-0C85-4283-8B98-429841547958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3697875-5EC3-406D-9904-0DB3F1EA0411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3697875-5EC3-406D-9904-0DB3F1EA0411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3697875-5EC3-406D-9904-0DB3F1EA0411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3697875-5EC3-406D-9904-0DB3F1EA0411}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

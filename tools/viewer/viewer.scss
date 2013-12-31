@@ -1,0 +1,211 @@
+@mixin font-size-zero-hack {
+    font-size: 0;  // Suppress whitespace.
+}
+
+@mixin linear-gradient($gradient...) {
+    background: -moz-linear-gradient($gradient);
+    background: -ms-linear-gradient($gradient);
+    background: -o-linear-gradient($gradient);
+    background: -webkit-linear-gradient($gradient);
+}
+
+@mixin rotate($angle, $origin: null) {
+    -webkit-transform: rotate($angle);
+    transform: rotate($angle);
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+
+//--------------------------------
+//  Common
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+button, input, select {
+    font-size: 12px;
+}
+
+select {
+    padding: 2px 0;
+}
+
+
+//--------------------------------
+//  Game Table
+
+#game-table {
+    background-color: #050;
+    font-family: Helvetica, Arial, sans-serif;
+    height: 660px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 660px;
+    @include font-size-zero-hack;
+}
+
+.player {
+    bottom: 0;
+    height: 660px;
+    position: absolute;
+    top: 0;
+    width: 660px;
+
+    // Hide from the inspector.
+    visibility: hidden;
+    * { visibility: visible; }
+}
+
+.side-0 { @include rotate(0); }
+.side-1 { @include rotate(270deg); }
+.side-2 { @include rotate(180deg); }
+.side-3 { @include rotate(90deg); }
+
+
+//--------------------------------
+//  General Info
+
+#game-info {
+    background-color: #8a8;
+    bottom: 248px;
+    font-size: 14px;
+    left: 248px;
+    position: absolute;
+    right: 248px;
+    top: 248px;
+
+    & > div { margin: 7px; }
+}
+
+#sticks {
+    text-align: center;
+}
+
+.stick {
+    background-color: #eee;
+    border-radius: 1.5px;
+    display: inline-block;
+    padding: 0 12px;
+    vertical-align: middle;
+    @include linear-gradient(top, #eee, #fff, #eee, #ddd, #ccc);
+    @include font-size-zero-hack;
+}
+
+#wall-count {
+    float: right;
+}
+
+
+//--------------------------------
+//  Player
+
+.player-info {
+    bottom: 60px;
+    color: #ccc;
+    font-size: 14px;
+    left: 120px;
+    position: absolute;
+}
+
+.ground {
+    bottom: 0;
+    left: 120px;
+    position: absolute;
+    right: 0;
+}
+
+.discards {
+    left: 240px;
+    position: absolute;
+    top: 420px;
+}
+
+
+//--------------------------------
+//  Tiles and Melds
+
+.tile {
+    background-color: #eee;
+    border-radius: 4px;
+    display: inline-block;
+    height: 40px;
+    margin: 1px;
+    vertical-align: bottom;
+    width: 28px;
+    @include linear-gradient(left top, #ddd, #fff);
+}
+
+.tile-back {
+    background-color: #ea9c00;
+    @include linear-gradient(left top, #fa0, #d58e00);
+}
+
+.hand {
+    .tile-draw, .tile-claim {
+        margin-left: 4px;
+    }
+}
+
+.meld {
+    float: right;
+    margin-left: 8px;
+
+    .tile-extend {
+        bottom: 30px;
+        margin-left: -41px;
+        position: relative;
+    }
+}
+
+
+.meld .tile-claim,
+.tile-extend,
+.tile-riichi {
+    height: 28px;
+    width: 40px;
+    img {
+        @include rotate(270deg, (14px 14px));
+    }
+}
+
+.discards {
+    .tile {
+        vertical-align: middle;
+    }
+    .tile-claim {
+        opacity: .5;
+    }
+    .tile-riichi {
+        margin-bottom: 7px;
+        margin-top: 7px;
+    }
+}
+
+
+
+//--------------------------------
+//  Side Panel
+
+#side-panel > div {
+    margin: 18px 12px 18px 690px;
+}
+
+#controls {
+    font-size: 14px;
+    * {
+        vertical-align: middle;
+    }
+    & > div {
+        margin: 6px 0;
+        & > span:not(:first-child) { margin-left: 24px; }
+    }
+}
+
+.error {
+    color: #c00;
+    font-style: italic;
+}

@@ -1,0 +1,21 @@
+<NUnitProject>
+  <Settings activeconfig="Debug" appbase="."/>
+  <Config name="Debug" runtimeFramework="v3.5">
+    <assembly path="auxlib/bin/Debug/NMahjong.Aux.Tests.dll" />
+    <assembly path="auxlib/tools/bin/Debug/NMahjong.Aux.Tools.Tests.dll" />
+    <assembly path="base/bin/Debug/NMahjong.Base.Tests.dll" />
+    <assembly path="japanese/bin/Debug/NMahjong.Japanese.Tests.dll" />
+    <assembly path="japanese/drivers/bin/Debug/NMahjong.Japanese.Drivers.Tests.dll" />
+    <assembly path="japanese/engine/bin/Debug/NMahjong.Japanese.Engine.Tests.dll" />
+    <assembly path="drivers/mjai/bin/Debug/NMahjong.Drivers.Mjai.Tests.dll" />
+  </Config>
+  <Config name="Release" runtimeFramework="v3.5">
+    <assembly path="auxlib/bin/Release/NMahjong.Aux.Tests.dll" />
+    <assembly path="auxlib/tools/bin/Release/NMahjong.Aux.Tools.Tests.dll" />
+    <assembly path="base/bin/Release/NMahjong.Base.Tests.dll" />
+    <assembly path="japanese/bin/Release/NMahjong.Japanese.Tests.dll" />
+    <assembly path="japanese/drivers/bin/Release/NMahjong.Japanese.Drivers.Tests.dll" />
+    <assembly path="japanese/engine/bin/Release/NMahjong.Japanese.Engine.Tests.dll" />
+    <assembly path="drivers/mjai/bin/Release/NMahjong.Drivers.Mjai.Tests.dll" />
+  </Config>
+</NUnitProject>

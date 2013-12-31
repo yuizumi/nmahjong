@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>NMahjong.Japanese.Drivers</AssemblyName>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>{020D7B32-869D-4F9F-BAB3-6FDFBC8EF9CD}</ProjectGuid>
+    <RootNamespace>NMahjong.Japanese.Drivers</RootNamespace>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AnnotatedTileConverter.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="GameRecorder.cs" />
+    <Compile Include="ISimpleConnection.cs" />
+    <Compile Include="IntelligenceFinder.cs" />
+    <Compile Include="IntelligenceOptions.cs" />
+    <Compile Include="IntelligenceOptionsExtension.cs" />
+    <Compile Include="JsonWriteOnlyConverter.cs" />
+    <Compile Include="LoggedConnection.cs" />
+    <Compile Include="RevealedMeldConverter.cs" />
+    <Compile Include="TileConverter.cs" />
+    <Compile Include="SimpleClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Options">
+      <HintPath>..\..\..\third_party\Mono.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\third_party\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\auxlib\NMahjong.Aux.csproj">
+      <Project>{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}</Project>
+      <Name>NMahjong.Aux</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\auxlib\tools\NMahjong.Aux.Tools.csproj">
+      <Project>{389A3C0F-34EB-4015-AB6D-823A5693C59D}</Project>
+      <Name>NMahjong.Aux.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\base\NMahjong.Base.csproj">
+      <Project>{D55101BF-1592-402D-B13D-BF7ACC2EF244}</Project>
+      <Name>NMahjong.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NMahjong.Japanese.csproj">
+      <Project>{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}</Project>
+      <Name>NMahjong.Japanese</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

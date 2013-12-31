@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>NMahjong.Japanese.Tests</AssemblyName>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>{B30AEFAE-B9F8-4758-8CA9-B693B70E671C}</ProjectGuid>
+    <RootNamespace>NMahjong.Japanese</RootNamespace>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ActionAssert.cs" />
+    <Compile Include="ActionIdentity.cs" />
+    <Compile Include="ActionsTest.cs" />
+    <Compile Include="AnnotatedTileTest.cs" />
+    <Compile Include="AnnotatedTilesTest.cs" />
+    <Compile Include="CanonicalTileTest.cs" />
+    <Compile Include="CheckTileTest.cs" />
+    <Compile Include="ConcealedKongTest.cs" />
+    <Compile Include="DoraTest.cs" />
+    <Compile Include="DoraHelperTest.cs" />
+    <Compile Include="ExtendedKongTest.cs" />
+    <Compile Include="MeldAssert.cs" />
+    <Compile Include="MeldIdentity.cs" />
+    <Compile Include="OpenChowTest.cs" />
+    <Compile Include="OpenKongTest.cs" />
+    <Compile Include="OpenPungTest.cs" />
+    <Compile Include="PlayerStatesTest.cs" />
+    <Compile Include="RevealedMeldsTest.cs" />
+    <Compile Include="TestHelperWithAnnotatedTiles.cs" />
+    <Compile Include="TestHelperWithRevealedMelds.cs" />
+    <Compile Include="TileAnnotationsExtensionTest.cs" />
+    <Compile Include="WinningInfoTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="nunit.framework" />
+    <Reference Include="NSubstitute">
+      <HintPath>..\..\third_party\NSubstitute.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\auxlib\NMahjong.Aux.csproj">
+      <Project>{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}</Project>
+      <Name>NMahjong.Aux</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\base\NMahjong.Base.csproj">
+      <Project>{D55101BF-1592-402D-B13D-BF7ACC2EF244}</Project>
+      <Name>NMahjong.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\japanese\NMahjong.Japanese.csproj">
+      <Project>{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}</Project>
+      <Name>NMahjong.Japanese</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\auxlib\NMahjong.Aux.Tests.csproj">
+      <Project>{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}</Project>
+      <Name>NMahjong.Aux.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\base\NMahjong.Base.Tests.csproj">
+      <Project>{B207F03B-7DDA-4B92-96B7-66F021E44ED9}</Project>
+      <Name>NMahjong.Base.Tests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

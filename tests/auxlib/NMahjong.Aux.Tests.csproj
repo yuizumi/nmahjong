@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>NMahjong.Aux.Tests</AssemblyName>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}</ProjectGuid>
+    <RootNamespace>NMahjong.Aux</RootNamespace>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CheckArgTest.cs" />
+    <Compile Include="CheckStateTest.cs" />
+    <Compile Include="CollectionsTest.cs" />
+    <Compile Include="DisposableContainerTest.cs" />
+    <Compile Include="EnumsTest.cs" />
+    <Compile Include="ImmutableDictionaryTest.cs" />
+    <Compile Include="ImmutableListTest.cs" />
+    <Compile Include="MoreEnumerableTest.cs" />
+    <Compile Include="PrettyList.cs" />
+    <Compile Include="PrettyListTest.cs" />
+    <Compile Include="ReadOnlyCollectionViewTest.cs" />
+    <Compile Include="ReadOnlyDictionaryViewTest.cs" />
+    <Compile Include="ReadOnlyListViewTest.cs" />
+    <Compile Include="TestHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="nunit.framework" />
+    <Reference Include="NSubstitute">
+      <HintPath>..\..\third_party\NSubstitute.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\auxlib\NMahjong.Aux.csproj">
+      <Project>{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}</Project>
+      <Name>NMahjong.Aux</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
