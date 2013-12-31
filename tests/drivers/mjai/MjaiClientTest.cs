@@ -42,7 +42,7 @@ namespace NMahjong.Drivers.Mjai
         public void TestJoin()
         {
             const string hello = @"{""type"":""hello"",""protocol"":""mjsonp"","
-                + @"""protocol_version"":2}";
+                + @"""protocol_version"":3}";
             var conn = Substitute.For<ISimpleConnection>();
             conn.Receive().Returns(hello);
             MjaiClient.Join(conn, "nmj", "default");
@@ -61,10 +61,10 @@ namespace NMahjong.Drivers.Mjai
         #pragma warning disable 414
         private static readonly string[]
         TestEstablishErrorSource = {
-            @"{""type"":""olleh"",""protocol"":""mjsonp"",""protocol_version"":2}",
-            @"{""type"":""hello"",""protocol"":""telnet"",""protocol_version"":2}",
-            @"{""type"":""hello"",""protocol"":""mjsonp"",""protocol_version"":1}",
-            @"{""type"":""hello"",""protocol"":""mjsonp"",""protocol_version"":3}",
+            @"{""type"":""olleh"",""protocol"":""mjsonp"",""protocol_version"":3}",
+            @"{""type"":""hello"",""protocol"":""telnet"",""protocol_version"":3}",
+            @"{""type"":""hello"",""protocol"":""mjsonp"",""protocol_version"":2}",
+            @"{""type"":""hello"",""protocol"":""mjsonp"",""protocol_version"":4}",
         };
         #pragma warning restore 414
 

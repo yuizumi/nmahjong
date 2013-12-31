@@ -56,7 +56,7 @@ namespace NMahjong.Drivers.Mjai
             MjaiJson hello = MjaiJson.Parse(connection.Receive());
             CheckField(hello, "type", "hello");
             CheckField(hello, "protocol" , "mjsonp");
-            CheckField(hello, "protocol_version", 2);
+            CheckField(hello, "protocol_version", 3);
             connection.Send(MjaiJson.Serialize(new { type = "join", name = name, room = room }));
         }
 
