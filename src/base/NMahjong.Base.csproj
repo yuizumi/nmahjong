@@ -42,6 +42,7 @@
     <Compile Include="TileType.cs" />
     <Compile Include="Tiles.cs" />
     <Compile Include="Wind.cs" />
+    <Compile Include="Winds.cs" />
     <Compile Include="Winning.cs" />
   </ItemGroup>
   <ItemGroup>

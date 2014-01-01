@@ -37,6 +37,7 @@
     <Compile Include="TestHelperWithTiles.cs" />
     <Compile Include="TileTest.cs" />
     <Compile Include="TilesTest.cs" />
+    <Compile Include="WindsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
