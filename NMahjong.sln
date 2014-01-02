@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Drivers.Mjai.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Sample", "src\sample\NMahjong.Sample.csproj", "{C2B9C009-FB6D-434A-99CA-F544D73F4CFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMahjong.Sample.Tests", "tests\sample\NMahjong.Sample.Tests.csproj", "{69731350-23C8-4A90-B020-32EC0EC29829}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69731350-23C8-4A90-B020-32EC0EC29829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69731350-23C8-4A90-B020-32EC0EC29829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69731350-23C8-4A90-B020-32EC0EC29829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69731350-23C8-4A90-B020-32EC0EC29829}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}.Release|Any CPU.ActiveCfg = Release|Any CPU

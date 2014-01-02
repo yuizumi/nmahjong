@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>NMahjong.Sample.Tests</AssemblyName>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>{69731350-23C8-4A90-B020-32EC0EC29829}</ProjectGuid>
+    <RootNamespace>NMahjong.Sample</RootNamespace>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ShantenHelperTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="testdata\shanten_benchmark_data.num.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="testdata\shanten_edgecases_data.num.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="nunit.framework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\auxlib\NMahjong.Aux.csproj">
+      <Project>{045B0F15-CE8B-475A-81A0-B9DCF7F64FD6}</Project>
+      <Name>NMahjong.Aux</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\base\NMahjong.Base.csproj">
+      <Project>{D55101BF-1592-402D-B13D-BF7ACC2EF244}</Project>
+      <Name>NMahjong.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\japanese\NMahjong.Japanese.csproj">
+      <Project>{7653A0C0-F65F-4258-97B8-9C9E7DFD34B5}</Project>
+      <Name>NMahjong.Japanese</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\sample\NMahjong.Sample.csproj">
+      <Project>{C2B9C009-FB6D-434A-99CA-F544D73F4CFE}</Project>
+      <Name>NMahjong.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\auxlib\NMahjong.Aux.Tests.csproj">
+      <Project>{39E077E8-2BBC-4DDD-9C9B-59044BC9944E}</Project>
+      <Name>NMahjong.Aux.Tests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

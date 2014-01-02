@@ -1,30 +1,28 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NMahjong.Aux;
 using NMahjong.Base;
 using NMahjong.Japanese;
 
+using MS = NMahjong.Base.MeldState;
+
 namespace NMahjong.Sample
 {
+    // NOTE(yuizumi): mid = Meld ID, tid = Tile ID.
+
     internal static class ShantenHelper
     {
-        // NOTE(yuizumi): mid = Meld ID, tid = Tile ID.
-
-        private static readonly ImmutableList<ImmutableList<Int32>>
-            MidToTids = BuildMidToTids();
+        // Use arrays (instead of ImmutableLists) for 5x faster speed.
+        private static readonly int[][] MidToTids = BuildMidToTids();
 
         private static readonly int NumTiles = Tile.AllTiles.Count;
-        private static readonly int NumMelds = MidToTids.Count;
+        private static readonly int NumMelds = MidToTids.Length;
 
-        private static ImmutableList<ImmutableList<Int32>> BuildMidToTids()
+        private static int[][] BuildMidToTids()
         {
-            var map = new List<ImmutableList<Int32>>();
-            map.AddRange(Pung.GetAllPungs(MeldState.Concealed).Select(
-                             m => m.Tiles.Select(Tiles.GetIndex).ToImmutableList()));
-            map.AddRange(Chow.GetAllChows(MeldState.Concealed).Select(
-                             m => m.Tiles.Select(Tiles.GetIndex).ToImmutableList()));
-            return map.ToImmutableList();
+            var melds = Enumerable.Concat(Pung.GetAllPungs(MS.Concealed).Cast<Meld>(),
+                                          Chow.GetAllChows(MS.Concealed).Cast<Meld>());
+            return melds.Select(m => m.Tiles.Select(Tiles.GetIndex).ToArray()).ToArray();
         }
 
         internal static int[] GetVector(IEnumerable<AnnotatedTile> tiles)
@@ -34,28 +32,37 @@ namespace NMahjong.Sample
             return vector;
         }
 
-        internal static int ComputeShantensu(int[] vector, int numMelds)
+        internal static int GetShantensu(int[] vector, int reqMelds)
         {
-            return ComputeShantensu(numMelds, vector, new int[NumTiles], 0, -1, 99);
+            return ComputeShantensu(reqMelds, vector, new int[NumTiles], 0, -1, 99);
         }
 
-        private static int ComputeShantensu(int rest, int[] hand, int[] goal, int mid,
-                                            int count, int limit)
+        private static int ComputeShantensu(int reqMelds, int[] hand, int[] goal, int mid,
+                                            int accum, int limit)
         {
-            if (rest == 0) {
-                int left = Enumerable.Range(0, NumTiles).Max(i => hand[i] - goal[i]);
-                limit = Math.Min(limit, count + 2 - Math.Min(left, 2));
+            if (reqMelds == 0) {
+                for (int tid = 0; tid < NumTiles; ++tid) {
+                    if (hand[tid] - goal[tid] >= 2) {
+                        limit = accum;
+                        break;
+                    }
+                    if (goal[tid] <= 2) {
+                        int newAccum = accum + Math.Min(goal[tid] + 2 - hand[tid], 2);
+                        limit = Math.Min(limit, newAccum);
+                    }
+                }
             } else {
                 for (; mid < NumMelds; ++mid) {
                     var tids = MidToTids[mid];
-                    int newCount = count;
+                    int newAccum = accum;
                     bool valid = true;
                     foreach (int tid in tids) {
-                        if (++goal[tid] > hand[tid]) ++newCount;
-                        valid = valid && (goal[tid] <= 4);
+                        ++goal[tid];
+                        if (goal[tid] > hand[tid]) ++newAccum;
+                        if (goal[tid] > 4) valid = false;
                     }
-                    if (valid && newCount < limit) {
-                        limit = ComputeShantensu(rest - 1, hand, goal, mid, newCount, limit);
+                    if (valid && newAccum < limit) {
+                        limit = ComputeShantensu(reqMelds - 1, hand, goal, mid, newAccum, limit);
                     }
                     foreach (int tid in tids) --goal[tid];
                 }

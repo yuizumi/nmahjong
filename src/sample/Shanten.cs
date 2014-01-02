@@ -38,9 +38,10 @@ namespace NMahjong.Sample
 
             var choices = new List<IPlayerAction>();
             int minShanten = Int32.MaxValue;
-            foreach (var action in RuleAdvisor.GetValidActions().OfType<DiscardAction>()) {
+            var actions = RuleAdvisor.GetValidActions();
+            foreach (var action in actions.OfType<DiscardAction>()) {
                 --vector[action.Tile.BaseTile.GetIndex()];
-                int shanten = ShantenHelper.ComputeShantensu(vector, (Self.Tiles.Count - 2) / 3);
+                int shanten = ShantenHelper.GetShantensu(vector, 4 - Self.Melds.Count);
                 if (shanten <= minShanten) {
                     if (shanten < minShanten) choices.Clear();
                     minShanten = shanten;

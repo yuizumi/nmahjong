@@ -8,6 +8,7 @@
     <assembly path="japanese/drivers/bin/Debug/NMahjong.Japanese.Drivers.Tests.dll" />
     <assembly path="japanese/engine/bin/Debug/NMahjong.Japanese.Engine.Tests.dll" />
     <assembly path="drivers/mjai/bin/Debug/NMahjong.Drivers.Mjai.Tests.dll" />
+    <assembly path="sample/bin/Debug/NMahjong.Sample.Tests.dll" />
   </Config>
   <Config name="Release" runtimeFramework="v3.5">
     <assembly path="auxlib/bin/Release/NMahjong.Aux.Tests.dll" />
@@ -17,5 +18,6 @@
     <assembly path="japanese/drivers/bin/Release/NMahjong.Japanese.Drivers.Tests.dll" />
     <assembly path="japanese/engine/bin/Release/NMahjong.Japanese.Engine.Tests.dll" />
     <assembly path="drivers/mjai/bin/Release/NMahjong.Drivers.Mjai.Tests.dll" />
+    <assembly path="sample/bin/Release/NMahjong.Sample.Tests.dll" />
   </Config>
 </NUnitProject>
