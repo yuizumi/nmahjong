@@ -2,40 +2,49 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using NMahjong.Testing;
 
+using MS = NMahjong.Base.MeldState;
+
 namespace NMahjong.Base
 {
     [TestFixture]
     public class KongTest : TestHelperWithTiles
     {
         [Test, TestCaseSource("TestOfSource")]
-        public void TestConcealed(Tile tile, IList<Tile> meldTiles)
+        public void TestConcealed(Tile tile, IList<Tile> tiles)
         {
-            Kong kong = Kong.Concealed(tile);
+            Kong kong = Kong.Of(tile, MS.Concealed);
             Assert.IsFalse(kong.IsPair);
             Assert.IsFalse(kong.IsChow);
             Assert.IsTrue (kong.IsPung);
             Assert.IsTrue (kong.IsKong);
-            Assert.AreEqual(MeldState.Concealed, kong.State);
-            Assert.AreEqual(meldTiles, kong.Tiles);
+            Assert.AreEqual(MS.Concealed, kong.State);
+            Assert.AreEqual(tiles, kong.Tiles);
         }
 
         [Test, TestCaseSource("TestOfSource")]
-        public void TestOpen(Tile tile, IList<Tile> meldTiles)
+        public void TestOpen(Tile tile, IList<Tile> tiles)
         {
-            Kong kong = Kong.Open(tile);
+            Kong kong = Kong.Of(tile, MS.Open);
             Assert.IsFalse(kong.IsPair);
             Assert.IsFalse(kong.IsChow);
             Assert.IsTrue (kong.IsPung);
             Assert.IsTrue (kong.IsKong);
-            Assert.AreEqual(MeldState.Open, kong.State);
-            Assert.AreEqual(meldTiles, kong.Tiles);
+            Assert.AreEqual(MS.Open, kong.State);
+            Assert.AreEqual(tiles, kong.Tiles);
         }
 
         [Test, TestCaseSource("TestFindSource")]
-        public void TestFind(IList<Tile> tiles, Kong concKong, Kong openKong)
+        public void TestFind(IList<Tile> tiles, Tile tile)
         {
-            Assert.AreEqual(concKong, Kong.Find(tiles, MeldState.Concealed));
-            Assert.AreEqual(openKong, Kong.Find(tiles, MeldState.Open));
+            Assert.AreEqual(Kong.Of(tile, MS.Concealed), Kong.Find(tiles, MS.Concealed));
+            Assert.AreEqual(Kong.Of(tile, MS.Open), Kong.Find(tiles, MS.Open));
+        }
+
+        [Test, TestCaseSource("TestFindInvalidSource")]
+        public void TestFindInvalid(IList<Tile> tiles)
+        {
+            Assert.IsNull(Kong.Find(tiles, MS.Concealed));
+            Assert.IsNull(Kong.Find(tiles, MS.Open));
         }
 
         #pragma warning disable 414
@@ -57,12 +66,13 @@ namespace NMahjong.Base
 
         private static readonly TestCaseData[]
         TestFindSource = {
-            Data(List(T5,T5,T5,T5), Kong.Concealed(T5), Kong.Open(T5)),
-            Data(List(FE,FE,FE,FE), Kong.Concealed(FE), Kong.Open(FE)),
-            Data(List(T5,T6,T7,T8), null, null), Data(List(FE,FE,FE,FS), null, null),
-            Data(List(FE,FE,FS,FE), null, null), Data(List(FE,FS,FE,FE), null, null),
-            Data(List(FS,FE,FE,FE), null, null),
-            Data(List(FE,FE,FE), null, null), Data(List(FE,FE,FE,FE,FE), null, null),
+            Data(List(T5,T5,T5,T5), T5), Data(List(FE,FE,FE,FE), FE),
+        };
+
+        private static readonly IList<Tile>[]
+        TestFindInvalidSource = {
+            List(FE,FE,FE,FS), List(FE,FE,FS,FE), List(FE,FS,FE,FE), List(FS,FE,FE,FE),
+            List(T5,T6,T7,T8), List(FE,FE,FE), List(FE,FE,FE,FE,FE),
         };
         #pragma warning restore 414
     }

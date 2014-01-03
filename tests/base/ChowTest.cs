@@ -3,47 +3,56 @@ using System;
 using System.Collections.Generic;
 using NMahjong.Testing;
 
+using MS = NMahjong.Base.MeldState;
+
 namespace NMahjong.Base
 {
     [TestFixture]
     public class ChowTest : TestHelperWithTiles
     {
         [Test, TestCaseSource("TestOfSource")]
-        public void TestConcealed(Tile tile, IList<Tile> meldTiles)
+        public void TestConcealed(Tile tile, IList<Tile> tiles)
         {
-            Chow chow = Chow.Concealed(tile);
+            Chow chow = Chow.Of(tile, MS.Concealed);
             Assert.IsFalse(chow.IsPair);
             Assert.IsTrue (chow.IsChow);
             Assert.IsFalse(chow.IsPung);
             Assert.IsFalse(chow.IsKong);
-            Assert.AreEqual(MeldState.Concealed, chow.State);
-            Assert.AreEqual(meldTiles, chow.Tiles);
+            Assert.AreEqual(MS.Concealed, chow.State);
+            Assert.AreEqual(tiles, chow.Tiles);
         }
 
         [Test, TestCaseSource("TestOfSource")]
-        public void TestOpen(Tile tile, IList<Tile> meldTiles)
+        public void TestOpen(Tile tile, IList<Tile> tiles)
         {
-            Chow chow = Chow.Open(tile);
+            Chow chow = Chow.Of(tile, MS.Open);
             Assert.IsFalse(chow.IsPair);
             Assert.IsTrue (chow.IsChow);
             Assert.IsFalse(chow.IsPung);
             Assert.IsFalse(chow.IsKong);
-            Assert.AreEqual(MeldState.Open, chow.State);
-            Assert.AreEqual(meldTiles, chow.Tiles);
+            Assert.AreEqual(MS.Open, chow.State);
+            Assert.AreEqual(tiles, chow.Tiles);
         }
 
         [Test, TestCaseSource("TestOfInvalidSource")]
         public void TestOfInvalid(Tile tile)
         {
-            Assert.Throws<ArgumentException>(() => Chow.Concealed(tile));
-            Assert.Throws<ArgumentException>(() => Chow.Open(tile));
+            Assert.Throws<ArgumentException>(() => Chow.Of(tile, MS.Concealed));
+            Assert.Throws<ArgumentException>(() => Chow.Of(tile, MS.Open));
         }
 
         [Test, TestCaseSource("TestFindSource")]
-        public void TestFind(IList<Tile> tiles, Chow concChow, Chow openChow)
+        public void TestFind(IList<Tile> tiles, Tile tile)
         {
-            Assert.AreEqual(concChow, Chow.Find(tiles, MeldState.Concealed));
-            Assert.AreEqual(openChow, Chow.Find(tiles, MeldState.Open));
+            Assert.AreEqual(Chow.Of(tile, MS.Concealed), Chow.Find(tiles, MS.Concealed));
+            Assert.AreEqual(Chow.Of(tile, MS.Open), Chow.Find(tiles, MS.Open));
+        }
+
+        [Test, TestCaseSource("TestFindInvalidSource")]
+        public void TestFindInvalid(IList<Tile> tiles)
+        {
+            Assert.IsNull(Chow.Find(tiles, MS.Concealed));
+            Assert.IsNull(Chow.Find(tiles, MS.Open));
         }
 
         #pragma warning disable 414
@@ -65,14 +74,14 @@ namespace NMahjong.Base
 
         private static readonly TestCaseData[]
         TestFindSource = {
-            Data(List(T5,T6,T7), Chow.Concealed(T5), Chow.Open(T5)),
-            Data(List(T7,T6,T5), Chow.Concealed(T5), Chow.Open(T5)),
-            Data(List(T1,T2,T3), Chow.Concealed(T1), Chow.Open(T1)),
-            Data(List(T7,T8,T9), Chow.Concealed(T7), Chow.Open(T7)),
-            Data(List(T5,T5,T5), null, null), Data(List(T5,S6,W7), null, null),
-            Data(List(T8,T9,T1), null, null), Data(List(T9,T1,T2), null, null),
-            Data(List(FE,FS,FW), null, null), Data(List(JP,JF,JC), null, null),
-            Data(List(T5,T6), null, null), Data(List(T5,T6,T7,T8), null, null),
+            Data(List(T5,T6,T7), T5), Data(List(T7,T6,T5), T5),
+            Data(List(T1,T2,T3), T1), Data(List(T7,T8,T9), T7),
+        };
+
+        private static readonly IList<Tile>[]
+        TestFindInvalidSource = {
+            List(T5,T5,T5), List(T5,S6,W7), List(T8,T9,T1), List(T9,T1,T2),
+            List(FE,FS,FW), List(JP,JF,JC), List(T5,T6), List(T5,T6,T7,T8),
         };
         #pragma warning restore 414
     }

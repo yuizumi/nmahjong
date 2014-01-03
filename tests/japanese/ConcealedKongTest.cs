@@ -3,6 +3,8 @@ using System;
 using NMahjong.Base;
 using NMahjong.Testing;
 
+using MS = NMahjong.Base.MeldState;
+
 namespace NMahjong.Japanese
 {
     [TestFixture]
@@ -17,10 +19,9 @@ namespace NMahjong.Japanese
             Assert.IsTrue (kong.IsPung);
             Assert.IsTrue (kong.IsKong);
             Assert.AreEqual(new [] { T5r, T5p, T5p, T5p }, kong.AnnotatedTiles);
-            Assert.AreEqual(Kong.Concealed(T5), kong.BaseMeld);
-            Assert.Throws<InvalidOperationException>(
-                () => { var _ = kong.Feeder; });
-            Assert.AreEqual(MeldState.Concealed, kong.State);
+            Assert.AreEqual(Kong.Of(T5, MS.Concealed), kong.BaseMeld);
+            Assert.Throws<InvalidOperationException>(() => { var _ = kong.Feeder; });
+            Assert.AreEqual(MS.Concealed, kong.State);
             Assert.AreEqual(new [] { T5, T5, T5, T5 }, kong.Tiles);
         }
 

@@ -45,16 +45,6 @@ namespace NMahjong.Base
             get { return mTiles; }
         }
 
-        public static Kong Concealed(Tile tile)
-        {
-            return Of(tile, MeldState.Concealed);
-        }
-
-        public static Kong Open(Tile tile)
-        {
-            return Of(tile, MeldState.Open);
-        }
-
         public static Kong Of(Tile tile, MeldState state)
         {
             CheckArg.NotNull(tile, "tile");

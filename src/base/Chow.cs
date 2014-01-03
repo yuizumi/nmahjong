@@ -24,15 +24,10 @@ namespace NMahjong.Base
             mState = state;
         }
 
-        private static bool IsChowBase(Tile tile)
-        {
-            return tile.IsNumberTile() && tile.Rank <= 7;
-        }
-
         private static ImmutableDictionary<Tile, Chow> BuildChows(MeldState state)
         {
-            return Tile.AllTiles.Where(IsChowBase)
-                .ToImmutableDictionary(t => t, t => new Chow(t, state));
+            return Tile.AllTiles
+                .Where(IsChowBase).ToImmutableDictionary(t => t, t => new Chow(t, state));
         }
 
         public override bool IsChow
@@ -48,16 +43,6 @@ namespace NMahjong.Base
         public override ImmutableList<Tile> Tiles
         {
             get { return mTiles; }
-        }
-
-        public static Chow Concealed(Tile tile)
-        {
-            return Of(tile, MeldState.Concealed);
-        }
-
-        public static Chow Open(Tile tile)
-        {
-            return Of(tile, MeldState.Open);
         }
 
         public static Chow Of(Tile tile, MeldState state)
@@ -87,6 +72,11 @@ namespace NMahjong.Base
         public override string ToString()
         {
             return String.Format("Chow({0}, {1})", mTiles.BracedString(), mState);
+        }
+
+        private static bool IsChowBase(Tile tile)
+        {
+            return tile.IsNumberTile() && tile.Rank <= 7;
         }
     }
 }

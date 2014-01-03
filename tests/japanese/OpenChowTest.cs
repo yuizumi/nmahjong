@@ -3,6 +3,8 @@ using System;
 using NMahjong.Base;
 using NMahjong.Testing;
 
+using MS = NMahjong.Base.MeldState;
+
 namespace NMahjong.Japanese
 {
     [TestFixture]
@@ -17,9 +19,9 @@ namespace NMahjong.Japanese
             Assert.IsFalse(chow.IsPung);
             Assert.IsFalse(chow.IsKong);
             Assert.AreEqual(new [] { T5r, T6p, Claimed(T7p) }, chow.AnnotatedTiles);
-            Assert.AreEqual(Chow.Open(T5), chow.BaseMeld);
+            Assert.AreEqual(Chow.Of(T5, MS.Open), chow.BaseMeld);
             Assert.AreEqual(Player1, chow.Feeder);
-            Assert.AreEqual(MeldState.Open, chow.State);
+            Assert.AreEqual(MS.Open, chow.State);
             Assert.AreEqual(new [] { T5, T6, T7 }, chow.Tiles);
         }
 
@@ -32,9 +34,9 @@ namespace NMahjong.Japanese
             Assert.IsFalse(chow.IsPung);
             Assert.IsFalse(chow.IsKong);
             Assert.AreEqual(new [] { Claimed(T5r), T6p, T7p }, chow.AnnotatedTiles);
-            Assert.AreEqual(Chow.Open(T5), chow.BaseMeld);
+            Assert.AreEqual(Chow.Of(T5, MS.Open), chow.BaseMeld);
             Assert.AreEqual(Player1, chow.Feeder);
-            Assert.AreEqual(MeldState.Open, chow.State);
+            Assert.AreEqual(MS.Open, chow.State);
             Assert.AreEqual(new [] { T5, T6, T7 }, chow.Tiles);
         }
 

@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using NMahjong.Testing;
 
+using MS = NMahjong.Base.MeldState;
+
 namespace NMahjong.Base
 {
     [TestFixture]
@@ -15,9 +17,9 @@ namespace NMahjong.Base
         #pragma warning disable 414
         private static readonly TestCaseData[]
         TestIsOpenSource = {
-            Data(Chow.Concealed(T5), false), Data(Chow.Open(T5), true),
-            Data(Pung.Concealed(T5), false), Data(Pung.Open(T5), true),
-            Data(Kong.Concealed(T5), false), Data(Kong.Open(T5), true),
+            Data(Chow.Of(T5, MS.Concealed), false), Data(Chow.Of(T5, MS.Open), true),
+            Data(Pung.Of(T5, MS.Concealed), false), Data(Pung.Of(T5, MS.Open), true),
+            Data(Kong.Of(T5, MS.Concealed), false), Data(Kong.Of(T5, MS.Open), true),
         };
         #pragma warning restore 414
     }

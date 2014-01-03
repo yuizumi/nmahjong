@@ -8,14 +8,18 @@ namespace NMahjong.Base
 
     public class Pair : Meld
     {
-        private static readonly PairsMap PairsMap =
-            Tile.AllTiles.ToImmutableDictionary(t => t, t => new Pair(t));
+        private static readonly PairsMap PairsMap = BuildPairs();
 
         private readonly ImmutableList<Tile> mTiles;
 
         private Pair(Tile tile)
         {
             mTiles = ImmutableList.Of(tile, tile);
+        }
+
+        private static ImmutableDictionary<Tile, Pair> BuildPairs()
+        {
+            return Tile.AllTiles.ToImmutableDictionary(t => t, t => new Pair(t));
         }
 
         public override bool IsPair

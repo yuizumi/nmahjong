@@ -40,16 +40,6 @@ namespace NMahjong.Base
             get { return mTiles; }
         }
 
-        public static Pung Concealed(Tile tile)
-        {
-            return Of(tile, MeldState.Concealed);
-        }
-
-        public static Pung Open(Tile tile)
-        {
-            return Of(tile, MeldState.Open);
-        }
-
         public static Pung Of(Tile tile, MeldState state)
         {
             CheckArg.NotNull(tile, "tile");
