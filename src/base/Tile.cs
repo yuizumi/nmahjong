@@ -6,13 +6,81 @@ using NMahjong.Aux;
 
 namespace NMahjong.Base
 {
+    /**
+      <summary>
+        Provides the most basic representation of a number or honor tile.
+      </summary>
+      <remarks>
+        <para>
+          Instances of the <see cref="Tile"/> class can be obtained only through its public
+          fields. The class does not provide any public constructors or methods for the
+          client code to instantiate a new object. This ensures each tile to be represented
+          by a single unique object and allows the equality of <see cref="Tile"/> instances
+          to be determined just by testing reference equality.
+        </para>
+        <para>
+          Each tile has a name of two letters given in the following manner:
+        </para>
+        <list type="table">
+          <listheader>
+            <term>Suit</term>
+            <description>Naming rule</description>
+          </listheader>
+          <item>
+            <term>Circles</term>
+            <description>
+              <b>T</b> (<i>tǒng-zi</i>, 筒子) followed by the rank. (e.g. <see cref="T1"/>)
+            </description>
+          </item>
+          <item>
+            <term>Bamboos</term>
+            <description>
+              <b>S</b> (<i>suǒ-zi</i>, 索子) followed by the rank. (e.g. <see cref="S1"/>)
+            </description>
+          </item>
+          <item>
+            <term>Characters</term>
+            <description>
+              <b>W</b> (<i>wàn-zi</i>, 萬子) followed by the rank. (e.g. <see cref="W1"/>)
+            </description>
+          </item>
+          <item>
+            <term>Winds</term>
+            <description>
+              <b>F</b> (<i>fēng-pái</i>, 風牌) followed by the direction
+              (<b>E</b>, <b>S</b>, <b>W</b>, <b>N</b>). (e.g. <see cref="FE"/>)
+            </description>
+          </item>
+          <item>
+            <term>Dragons</term>
+            <description>
+              <b>J</b> (<i>jiàn-pái</i>, 箭牌) followed by the Western tile index
+              (<b>P</b>, <b>F</b>, <b>C</b>). (e.g. <see cref="JP"/>)
+            </description>
+          </item>
+         </list>
+         <note>
+           <b>E</b>, <b>S</b>, <b>W</b>, <b>N</b>, <b>P</b>, <b>F</b>, and <b>C</b> can be found
+           on Western mahjong tiles as indices (typically printed at the top-left corner).
+           Those for dragons match to the Chinese tile names in Wade-Giles romanization:
+           <b>P</b> (<i>pai2</i>, 白, white dragon), <b>F</b> (<i>fa1</i>, 發, green dragon), and
+           <b>C</b> (<i>chung1</i>, 中, red dragon).
+         </note>
+         <para>
+           <see cref="Tile"/> represents only normal tiles. Special tiles, such as flowers and
+           jokers, are currently not supported by NMahjong.
+         </para>
+       </remarks>
+    */
     public sealed class Tile
     {
         private readonly string mName;
         private readonly Suit mSuit;
         private readonly int mRank;
 
+        /// <summary>Contains all instances of <see cref="Tile"/>.</summary>
         public static readonly ImmutableList<Tile> AllTiles;
+
         private static readonly ImmutableDictionary<Suit, ImmutableList<Tile>>
             NumberTiles;
 
@@ -29,25 +97,51 @@ namespace NMahjong.Base
                                         S1, S2, S3, S4, S5, S6, S7, S8, S9,
                                         W1, W2, W3, W4, W5, W6, W7, W8, W9,
                                         FE, FS, FW, FN, JP, JF, JC);
-
-            var numbers = new Dictionary<Suit, ImmutableList<Tile>>() {
+            var numberTiles = new Dictionary<Suit, ImmutableList<Tile>>() {
                 { Suit.Dots, ImmutableList.Of(T1, T2, T3, T4, T5, T6, T7, T8, T9) },
                 { Suit.Bams, ImmutableList.Of(S1, S2, S3, S4, S5, S6, S7, S8, S9) },
                 { Suit.Craks, ImmutableList.Of(W1, W2, W3, W4, W5, W6, W7, W8, W9) },
             };
-            NumberTiles = ImmutableDictionary.Of(numbers);
+            NumberTiles = ImmutableDictionary.Of(numberTiles);
         }
 
+        /**
+          <summary>
+            Gets the name of this tile.
+          </summary>
+          <value>
+            The name of this tile.
+          </value>
+        */
         public string Name
         {
             get { return mName; }
         }
 
+        /**
+          <summary>
+            Gets the suit of this tile.
+          </summary>
+          <value>
+            The suit of this tile.
+          </value>
+        */
         public Suit Suit
         {
             get { return mSuit; }
         }
 
+        /**
+          <summary>
+            Gets the rank of this tile, if it is numbered.
+          </summary>
+          <value>
+            An integer from 1 to 9 that represents the rank of this tile.
+          </value>
+          <exception cref="InvalidOperationException">
+            The object is not a number tile.
+          </exception>
+        */
         public int Rank
         {
             get {
@@ -57,6 +151,14 @@ namespace NMahjong.Base
             }
         }
 
+        /**
+          <summary>
+            Gets whether this tile is simple, terminal, or honor.
+          </summary>
+          <value>
+            <see cref="TileType"/> that indicates the type of this tile.
+          </value>
+        */
         public TileType TileType
         {
             get {
@@ -66,6 +168,26 @@ namespace NMahjong.Base
             }
         }
 
+        /**
+          <summary>
+            Gets a number tile of the specified suit and rank.
+          </summary>
+          <param name="suit">
+            The suit of the tile.
+          </param>
+          <param name="rank">
+            The rank of the tile.
+          </param>
+          <returns>
+            <see cref="Tile"/> that has <paramref name="suit"/> and <paramref name="rank"/>.
+          </returns>
+          <exception cref="ArgumentException">
+            <paramref name="suit"/> is not a suit of number tiles.
+          </exception>
+          <exception cref="ArgumentOutOfRangeException">
+            <paramref name="rank"/> is not in the range from 1 to 9.
+          </exception>
+        */
         public static Tile Of(Suit suit, int rank)
         {
             CheckArg.Expect(NumberTiles.ContainsKey(suit),
@@ -74,6 +196,14 @@ namespace NMahjong.Base
             return NumberTiles[suit][rank - 1];
         }
 
+        /**
+          <summary>
+            Returns a string that represents this tile.
+          </summary>
+          <returns>
+            The name of this tile.
+          </returns>
+        */
         public override string ToString()
         {
             return mName;

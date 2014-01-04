@@ -3,6 +3,11 @@ using NMahjong.Aux;
 
 namespace NMahjong.Base
 {
+    /**
+      <summary>
+        Provides extension methods for <see cref="Wind"/>.
+      </summary>
+    */
     public static class Winds
     {
         private static readonly ImmutableDictionary<Wind, Tile> WindToTile =
@@ -16,6 +21,17 @@ namespace NMahjong.Base
             };
         }
 
+        /**
+          <summary>
+            Gets a tile corresponding to the specified wind.
+          </summary>
+          <param name="wind">
+            The wind to get the tile for.
+          </param>
+          <returns>
+            <see cref="Tile"/> that corresponds to <paramref name="wind"/>.
+          </returns>
+        */
         public static Tile GetTile(this Wind wind)
         {
             CheckArg.Enum(wind, "wind");
